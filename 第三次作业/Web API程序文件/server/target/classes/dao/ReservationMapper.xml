@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.dao.ReservationMapper">
+    <select id="findAllReservation" resultType="demo.domain.Reservation" >
+        select * from appointment where studentid = #{studentId} order by id
+    </select>
+
+    <update id="updateReservation" parameterType="demo.domain.Reservation">
+        update appointment set condition = #{condition} where id = #{id}
+    </update>
+
+    <insert id="insertReservation" parameterType="demo.domain.Reservation" useGeneratedKeys="true" keyProperty="id">
+        insert into appointment (studentid, condition, site, time) values (#{studentId}, #{condition}, #{site}, #{time})
+    </insert>
+
+    <delete id="deleteReservation" parameterType="demo.domain.Reservation">
+        delete from appointment where id = #{id}
+    </delete>
+</mapper>
